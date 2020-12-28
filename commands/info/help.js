@@ -19,7 +19,7 @@ module.exports = {
         .addField("Description", command.description || "Not Provided :(")
         .addField("Usage", "`" + command.usage + "`" || "Not Provied")
         .setThumbnail(client.user.displayAvatarURL())
-        .setColor("GREEN")
+        .setColor("RANDOM")
         .setFooter(client.user.username, client.user.displayAvatarURL());
 
       return message.channel.send(embed);
@@ -27,8 +27,8 @@ module.exports = {
       const commands = await client.commands;
 
       let emx = new MessageEmbed()
-        .setDescription("Join my server or Die :D")
-        .setColor("GREEN")
+        .setDescription("**Use ``c!help`` To Get Information**")
+        .setColor("RANDOM")
         .setFooter(client.user.username, client.user.displayAvatarURL())
         .setThumbnail(client.user.displayAvatarURL());
 
@@ -46,7 +46,7 @@ module.exports = {
       for(const [key, value] of Object.entries(com)) {
         let category = key;
 
-        let desc = "`" + value.join("`, `") + "`";
+        let desc = "```" + value.join("` | `") + "```";
 
         emx.addField(`${category.toUpperCase()}[${value.length}]`, desc);
       }
@@ -56,10 +56,10 @@ module.exports = {
       if(database && database.length) {
         let array =[]
         database.forEach(m => {
-          array.push("`" + m.name + "`")
+          array.push("```" + m.name + "```")
         })
 
-        emx.addField("Custom Commands", array.join(", "))
+        emx.addField("Custom Commands", array.join(" | "))
       }
 
       return message.channel.send(emx);
